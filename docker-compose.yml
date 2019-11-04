@@ -6,17 +6,30 @@ services:
      container_name: app_mysql
      volumes:
       - ./mysql/dbdata:/var/lib/mysql
+     ports:
+      - "3306:3306"
      environment:
       - MYSQL_ROOT_PASSWORD=admin
       - MYSQL_DATABASE=app
       - MYSQL_USER=user
       - MYSQL_PASSWORD=secret
+   
+   app_pgsql:
+     image: postgres:12
+     container_name: app_pgsql
+     volumes:
+      - ./pgsql/dbdata:/var/lib/postgresql/data
+     ports:
+      - "5432:5432"
+     environment:
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=app
 
    apache2-php7.3:
      build: ./php
      container_name: apache2-php7.3
      volumes:
-      - ./www:/var/www/html
+      - ./pgsql/dbdata:/var/lib/mysql
      ports:
       - "80:80"
      environment:
