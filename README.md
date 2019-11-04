@@ -17,6 +17,7 @@ Após ter instalado o Docker e Docker-compose, segue os procedimentos:
 
 4. Para iniciar com container MySQL
    Execute `docker-compose up -d apache2-php7.3 app_mysql`
+   
    Para iniciar com container PostgreSQL
    Execute `docker-compose up -d apache2-php7.3 app_pgsql`
 
