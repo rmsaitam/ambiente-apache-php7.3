@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+   app_mysql:
+     image: mysql:5.7
+     container_name: app_mysql
+     volumes:
+      - ./mysql/dbdata:/var/lib/mysql
+     environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=app
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+
+   apache2-php7.3:
+     build: ./php
+     container_name: apache2-php7.3
+     volumes:
+      - ./www:/var/www/html
+     ports:
+      - "80:80"
+     environment:
+      VIRTUAL_HOST: app.local, app2.local
