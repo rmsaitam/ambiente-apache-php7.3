@@ -29,7 +29,8 @@ services:
      build: ./php
      container_name: apache2-php7.3
      volumes:
-      - ./pgsql/dbdata:/var/lib/mysql
+      - ./www/app:/var/www/html/app
+      - ./www/app2:/var/www/html/app2
      ports:
       - "80:80"
      environment:
